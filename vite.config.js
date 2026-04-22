@@ -18,7 +18,7 @@ export default defineConfig({
             ignored: ['**/storage/framework/views/**'],
         },
         hmr: {
-          host: 'desk-oracle.localhost',
+          host: 'guru.localhost',
         },
     },
 });
