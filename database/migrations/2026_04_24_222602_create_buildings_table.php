@@ -11,13 +11,19 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('floors', function (Blueprint $table) {
+        Schema::create('buildings', function (Blueprint $table) {
             $table->id();
-            $table->integer('level')->default(1);
+            $table->string('code', 100)->unique();
             $table->string('name', 255);
             $table->text('description')->nullable();
+            $table->string('address', 255);
             $table->json('metadata')->nullable();
             $table->timestamps();
+        });
+
+        Schema::table('floors', function (Blueprint $table) {
+            $table->unsignedBigInteger('building_id')->after('id');
+            $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');
         });
     }
 
@@ -26,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('floors');
+        Schema::dropIfExists('buildings');
     }
 };
