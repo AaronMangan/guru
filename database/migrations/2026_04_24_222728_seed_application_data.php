@@ -109,7 +109,6 @@ return new class extends Migration
         foreach (self::DESKS as $desk) {
             Desk::create($desk);
         }
-
     }
 
     /**
