@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\EnsureTeamMembership;
+use App\Models\Desk;
 use Illuminate\Support\Facades\Route;
 use Laravel\Fortify\Features;
 
@@ -11,7 +12,9 @@ Route::view('/', 'welcome', [
 Route::prefix('{current_team}')
     ->middleware(['auth', 'verified', EnsureTeamMembership::class])
     ->group(function () {
-        Route::view('dashboard', 'dashboard')->name('dashboard');
+        Route::view('dashboard', 'dashboard', [
+            'desks' => Desk::all(),
+        ])->name('dashboard');
     });
 
 Route::middleware(['auth'])->group(function () {

@@ -18,12 +18,20 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->string('address', 255);
             $table->json('metadata')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
 
         Schema::table('floors', function (Blueprint $table) {
-            $table->unsignedBigInteger('building_id')->after('id');
-            $table->foreign('building_id')->references('id')->on('buildings')->onDelete('cascade');
+            $table->foreignId('building_id')->nullable()->constrained('buildings')->nullOnDelete();
+        });
+
+        Schema::table('desks', function (Blueprint $table) {
+            $table->foreignId('building_id')
+                ->nullable()
+                ->after('metadata')
+                ->constrained('buildings')
+                ->nullOnDelete();
         });
     }
 

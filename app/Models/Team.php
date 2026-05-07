@@ -81,6 +81,21 @@ class Team extends Model
         return $this->hasMany(TeamInvitation::class);
     }
 
+    public function desks(): HasMany
+    {
+        return $this->hasMany(Desk::class);
+    }
+
+    public function buildings(): HasMany
+    {
+        return $this->hasMany(Building::class);
+    }
+
+    public function floors(): HasMany
+    {
+        return $this->hasMany(Floor::class);
+    }
+
     /**
      * Get the attributes that should be cast.
      *

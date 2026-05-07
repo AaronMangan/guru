@@ -23,9 +23,13 @@
             <flux:spacer />
 
             <flux:sidebar.nav>
-                <flux:sidebar.item icon="folder-git-2" href="https://github.com/laravel/livewire-starter-kit" target="_blank">
-                    {{ __('Repository') }}
-                </flux:sidebar.item>
+                
+                {{-- If Admin show the admin section link --}}
+                @role('super_admin')
+                    <flux:tooltip :content="__('Admin')" position="bottom">
+                        <flux:navbar.item class="!h-10 [&>div>svg]:size-5" icon="layout-grid" href="#" :label="__('Administration')">Admin</flux:navbar.item>
+                    </flux:tooltip>
+                @endrole
 
                 <flux:sidebar.item icon="book-open-text" href="https://laravel.com/docs/starter-kits#livewire" target="_blank">
                     {{ __('Documentation') }}

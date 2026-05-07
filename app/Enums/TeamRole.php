@@ -7,6 +7,7 @@ enum TeamRole: string
     case Owner = 'owner';
     case Admin = 'admin';
     case Member = 'member';
+    case SuperAdmin = 'super_admin';
 
     /**
      * Get the display label for the role.

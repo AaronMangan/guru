@@ -54,6 +54,10 @@ return new class extends Migration
                 ->after('metadata')
                 ->constrained('statuses')
                 ->nullOnDelete();
+            $table->foreignId('team_id')
+                ->nullable()
+                ->constrained('teams')
+                ->nullOnDelete();
         });
 
         // Statuses Relationships
